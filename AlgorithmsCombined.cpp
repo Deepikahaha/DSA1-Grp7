@@ -70,7 +70,7 @@ void toSelectionSort(int userInput[], int size){
     }
 }
 
-// Function to perform QuickSort
+// Function to perform QuickSort (used for searching algorithms)
 void quickSort(int arr[], int low, int high) {
     if (low < high) {
         int pivot = arr[high], i = low - 1;
@@ -97,15 +97,27 @@ int interpolationSearch(int arr[], int n, int key) {
     return -1; // Return -1 if not found
 }
 
+// **Binary Search function**
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
 int main() {
-    // Loop to execute three sorting/searching algorithms one after another
-    for (int i = 0; i < 3; i++) {
+    // Loop to execute four sorting/searching algorithms one after another
+    for (int i = 0; i < 4; i++) {
         // Display the algorithm name
         // This line sets the 'algo' string based on the value of 'i'
 // If i == 0, 'algo' is "Merge Sort"
 // If i == 1, 'algo' is "Selection Sort"
-// Otherwise, for i == 2, 'algo' is "Interpolation Search"
-        string algo = (i == 0) ? "Merge Sort" : (i == 1) ? "Selection Sort" : "Interpolation Search";
+// If i == 2, 'algo' is "Interpolation Search"
+// If i == 3, 'algo' is "Binary Search"
+        string algo = (i == 0) ? "Merge Sort" : (i == 1) ? "Selection Sort" : (i ==2) ? "Interpolation Search": "Binary Search";
         cout << algo << "\nEnter a number of integers: ";
         int size;
         cin >> size;
@@ -128,12 +140,12 @@ int main() {
             cout << "Enter a number to search: ";
             int key;
             cin >> key;
-            int index = interpolationSearch(userInput, size, key); // Perform Interpolation Search
+            int index = ( i==2 ) ? interpolationSearch(userInput, size, key) : binarySearch(userInput, 0, size - 1, key); // Perform Interpolation Search and Binary Search
             if (index != -1) cout << "Element found at index: " << index << endl;
             else cout << "Element not found!" << endl;
         }
 
-        if (i != 2) {
+        if (i < 2) { //Print sorted numbers only for sorting algorithms
             cout << "Sorted Numbers: ";
             toPrintArray(userInput, size); // Print sorted array for sorting algorithms
         }
