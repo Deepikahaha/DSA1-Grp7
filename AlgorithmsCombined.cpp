@@ -101,6 +101,10 @@ int main() {
     // Loop to execute three sorting/searching algorithms one after another
     for (int i = 0; i < 3; i++) {
         // Display the algorithm name
+        // This line sets the 'algo' string based on the value of 'i'
+// If i == 0, 'algo' is "Merge Sort"
+// If i == 1, 'algo' is "Selection Sort"
+// Otherwise, for i == 2, 'algo' is "Interpolation Search"
         string algo = (i == 0) ? "Merge Sort" : (i == 1) ? "Selection Sort" : "Interpolation Search";
         cout << algo << "\nEnter a number of integers: ";
         int size;
